@@ -58,6 +58,18 @@ textarea:hover {
   border: 1px solid #d5dcda;
 }
 
+.inputError input,
+.messageError textarea {
+  border: 1px solid #F27C74;
+}
+
+.inputError input {
+  background-image: url("./assets/svg/danger.svg");
+  background-repeat: no-repeat;
+  background-position: center right 20px;
+  
+}
+
 input:focus,
 textarea:focus {
   border: 1px solid #060811;

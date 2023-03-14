@@ -6,19 +6,48 @@ function App() {
   const [name, setName] = createSignal("");
   const [email, setEmail] = createSignal("");
   const [message, setMessage] = createSignal("");
+  const [nameError, setNameError] = createSignal("");
+  const [emailError, setEmailError] = createSignal("");
+  const [messageError, setMessageError] = createSignal("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log({ name: name(), email: email(), message: message() });
-    setName("");
-    setEmail("");
-    setMessage("");
+
+    // validate name
+    const nameRegex = /^[a-zA-Z0-9_]{2,40}$/;
+    if (!nameRegex.test(name())) {
+      setNameError("Please enter a real name");
+    } else {
+      setNameError("");
+    }
+
+    // validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email())) {
+      setEmailError("Please enter a valid email address");
+    } else {
+      setEmailError("");
+    }
+
+    // validate message
+    if (message().trim() === "") {
+      setMessageError("Message is required");
+    } else {
+      setMessageError("");
+    }
+
+    if (nameError() === "" && emailError() === "" && messageError() === "") {
+      console.log({ name: name(), email: email(), message: message() });
+      setName("");
+      setEmail("");
+      setMessage("");
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit} class={styles.form}>
+    <form onSubmit={handleSubmit} class={styles.form} noValidate>
       <h2 class={styles.title}>Fill out this form to contact us</h2>
-      <div class={styles.input}>
+      <div class={nameError() ? styles.inputError : styles.input}>
         <label htmlFor="name">Your Name</label>
         <input
           type="text"
@@ -28,7 +57,7 @@ function App() {
           onInput={(e) => setName(e.target.value)}
         />
       </div>
-      <div class={styles.input}>
+      <div class={emailError() ? styles.inputError : styles.input}>
         <label htmlFor="email">Email Address</label>
         <input
           type="email"
@@ -38,7 +67,7 @@ function App() {
           onInput={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div class={styles.textarea}>
+      <div class={messageError() ? styles.messageError : styles.message}>
         <label htmlFor="message">Message</label>
         <textarea
           id="message"
