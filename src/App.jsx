@@ -37,15 +37,34 @@ function App() {
     }
 
     if (nameError() === "" && emailError() === "" && messageError() === "") {
-      console.log({ name: name(), email: email(), message: message() });
-      setName("");
-      setEmail("");
-      setMessage("");
+      // Send the form data to Getform
+      fetch("https://getform.io/f/b0b64947-fd31-4bff-9ff3-11cae8d1157f", {
+        method: "POST",
+        body: JSON.stringify({
+          name: name(),
+          email: email(),
+          message: message(),
+        }),
+        headers: { "Content-Type": "application/json" },
+      })
+        .then(() => {
+          // Clear the form fields
+          setName("");
+          setEmail("");
+          setMessage("");
+        })
+        .catch((error) => console.error("Error submitting form:", error));
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} class={styles.form} noValidate>
+    <form
+      action="https://getform.io/f/b0b64947-fd31-4bff-9ff3-11cae8d1157f"
+      method="POST"
+      onSubmit={handleSubmit}
+      class={styles.form}
+      noValidate
+    >
       <h2 class={styles.title}>Fill out this form to contact us</h2>
       <div class={nameError() ? styles.inputError : styles.input}>
         <label htmlFor="name">Your Name</label>
