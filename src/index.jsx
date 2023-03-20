@@ -1,8 +1,7 @@
 import { render } from 'solid-js/web';
-
-import './index.css';
-import Form from './components/Form';
+import "./index.css";
+import App from "./App";
 
 const root = document.getElementById('root');
 
-render(() => <Form />, root);
+render(() => <App />, root);

@@ -1,12 +1,54 @@
-.form {
-  width: 100%;
-  max-width: 463px;
-  min-height: 494px;
+@font-face {
+  font-family: MacPawFixel;
+  src: url("../assets/fonts/MacPawFixelText/MacPawFixelText-Regular.woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: MacPawFixel;
+  src: url("../assets/fonts/MacPawFixelText/MacPawFixelText-Medium.woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: MacPawFixel;
+  src: url("../assets/fonts/MacPawFixelText/MacPawFixelText-SemiBold.woff2");
+  font-weight: 600;
 }
 
-.title {
+form {
+  box-sizing: border-box;
+  width: 446px;
+  max-width: calc(100vw - 16px);
+  margin: 0;
+  padding: 0;  
+  font-family: MacPawFixel, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.55;
   color: #060811;
-  margin-bottom: 40px;
+} 
+
+form * {
+  box-sizing: border-box;
+}
+
+input,
+textarea {
+  font-family: MacPawFixel;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #060811;
+  border: 1px solid #999;
+}
+
+::placeholder {
+  font-family: MacPawFixel;
+  font-weight: 400;
+}
+
+button {
+  font-family: MacPawFixel;
+  font-weight: 600;
 }
 
 label {
@@ -27,11 +69,20 @@ input {
   height: 54px;
   margin-bottom: 24px;
   padding: 16px;
-  border: 1px solid transparent;
   border-radius: 14px;
   color: #060811;
   background-color: #fff;
   transition: 0.3s ease-in-out;
+}
+
+.tooltip::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  right: 0;
+  width: 36px;
+  height: 11px;
+  background-image: url("../assets/svg/toltip-arrow.svg");
 }
 
 textarea {
@@ -41,7 +92,6 @@ textarea {
   height: 90px;
   margin-bottom: 40px;
   padding: 16px;
-  border: 1px solid transparent;
   border-radius: 14px;
   background-color: #fff;
   resize: none;
@@ -60,20 +110,18 @@ textarea:hover {
 
 .inputError input,
 .messageError textarea {
-  border: 1px solid #F27C74;
-}
-
-.inputError input {
+  border: 1px solid #f27c74;
+  margin-bottom: 15px;
   background-image: url("../assets/svg/danger.svg");
   background-repeat: no-repeat;
-  background-position: center right 20px;
-  
+  background-position: top 14px right 20px;
 }
 
 input:focus,
 textarea:focus {
   border: 1px solid #060811;
   outline: 0;
+  background-image: none;
 }
 
 input:-webkit-autofill {
@@ -83,6 +131,25 @@ input:-webkit-autofill {
 
 input:not(:placeholder-shown) {
   border: 1px solid #060811;
+}
+
+.inputError input:not(:placeholder-shown) {
+  border: 1px solid #f27c74;
+}
+
+.tooltip {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 446px;
+  padding: 12px;
+  margin-bottom: 24px;
+  border-radius: 14px;
+  background-color: #f27c74;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
 }
 
 button {

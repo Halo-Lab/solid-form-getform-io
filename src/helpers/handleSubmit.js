@@ -1,39 +1,52 @@
-import {
-  validateName,
-  validateEmail,
-  validateMessage,
-} from "./validate";
+import { validateName, validateEmail, validateMessage } from "./validate";
 
-export function handleSubmit(
-  e,
+const handleSubmit = (
+  event,
   name,
   email,
   message,
+  getFormID,
   setName,
   setEmail,
   setMessage,
+  showName,
+  showEmail,
+  showMessage,
   setNameError,
   setEmailError,
-  setMessageError
-) {
-  e.preventDefault();
+  setMessageError,
+  onFormSubmit
+) => {
+  event.preventDefault();
 
-  const nameError = validateName(name());
-  setNameError(nameError);
+  let nameError, emailError, messageError;
 
-  const emailError = validateEmail(email());
-  setEmailError(emailError);
+  if (showName) {
+    nameError = validateName(name());
+    setNameError(nameError);
+  }
 
-  const messageError = validateMessage(message());
-  setMessageError(messageError);
+  if (showEmail) {
+    emailError = validateEmail(email());
+    setEmailError(emailError);
+  }
 
-  if (nameError === "" && emailError === "" && messageError === "") {
-    fetch("https://getform.io/f/b0b64947-fd31-4bff-9ff3-11cae8d1157f", {
+  if (showMessage) {
+    messageError = validateMessage(message());
+    setMessageError(messageError);
+  }
+
+  if (
+    (!showName || nameError === "") &&
+    (!showEmail || emailError === "") &&
+    (!showMessage || messageError === "")
+  ) {
+    fetch(getFormID, {
       method: "POST",
       body: JSON.stringify({
-        name: name(),
-        email: email(),
-        message: message(),
+        ...(showName && { name: name() }),
+        ...(showEmail && { email: email() }),
+        ...(showMessage && { message: message() }),
       }),
       headers: { "Content-Type": "application/json" },
     })
@@ -43,5 +56,10 @@ export function handleSubmit(
         setMessage("");
       })
       .catch((error) => console.error("Error submitting form:", error));
+      if(onFormSubmit) {
+        onFormSubmit();
+      }
   }
 }
+
+export default handleSubmit;
