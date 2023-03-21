@@ -14,11 +14,12 @@
   font-weight: 600;
 }
 
-form {
+form {  
   box-sizing: border-box;
   width: 446px;
   max-width: calc(100vw - 16px);
-  margin: 0;
+  margin: 0 auto;
+  margin-top: 40px;
   padding: 0;  
   font-family: MacPawFixel, sans-serif;
   font-weight: 400;
@@ -75,14 +76,66 @@ input {
   transition: 0.3s ease-in-out;
 }
 
-.tooltip::before {
+.tooltipIcon {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: -65px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  background-image: url("../assets/svg/danger.svg");
+  cursor: pointer;
+}
+
+.messageError .tooltipIcon {
+  top: -101px;
+}
+
+.tooltip {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 446px;
+}
+
+.tooltipText {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 446px;
+  padding: 0 12px;
+  height: 0;
+  border-radius: 14px;
+  background-color: #f27c74;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  overflow-y: hidden;
+  line-height: 150%;
+  transition: .3s ease-in-out;
+}
+
+.tooltipText::after {
   content: "";
   position: absolute;
   top: -11px;
   right: 0;
   width: 36px;
-  height: 11px;
+  height: 0;
   background-image: url("../assets/svg/toltip-arrow.svg");
+  transition: .1s ease-in-out;
+}
+
+.tooltipIcon:hover ~ .tooltipText {
+  height: auto;
+  margin-bottom: 24px;
+  padding: 12px;
+  overflow-y: visible;
+}
+
+.tooltipIcon:hover ~ .tooltipText::after {
+  height: 11px;
 }
 
 textarea {
@@ -90,7 +143,7 @@ textarea {
   width: 100%;
   max-width: 446px;
   height: 90px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   padding: 16px;
   border-radius: 14px;
   background-color: #fff;
@@ -111,10 +164,6 @@ textarea:hover {
 .inputError input,
 .messageError textarea {
   border: 1px solid #f27c74;
-  margin-bottom: 15px;
-  background-image: url("../assets/svg/danger.svg");
-  background-repeat: no-repeat;
-  background-position: top 14px right 20px;
 }
 
 input:focus,
@@ -137,19 +186,8 @@ input:not(:placeholder-shown) {
   border: 1px solid #f27c74;
 }
 
-.tooltip {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 446px;
-  padding: 12px;
-  margin-bottom: 24px;
-  border-radius: 14px;
-  background-color: #f27c74;
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 150%;
+.buttonContainer {
+  padding-top: 16px;
 }
 
 button {

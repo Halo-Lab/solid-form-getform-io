@@ -1,15 +1,15 @@
-# Solid.js Form Component
+# Solid-form-getform-io
 This is a form component built with Solid.js that allows you to easily create a form that submits data to a GetForm endpoint. The form has three fields: name (input type="text"), email (input type="email"), and message (textarea). You can choose which fields to display by passing props to the component.
 
 ## Installation
 You can install the package using npm:
 
-`npm install solidjs-getform-form`
+`npm install solid-form-solid-form-getform-io-io`
 
 ## Usage
 To use the form component, you need to import it into your Solid.js application:
 
-`import Form from 'solidjs-getform-form';`
+`import Form from 'solid-form-getform-io';`
 
 You can then use the component in your application:
 
@@ -36,7 +36,7 @@ The following props are available for the form component:
 Here's an example of how to use the form component:
 
 ```js
-import Form from 'solidjs-getform-form';
+import Form from 'solid-form-getform-io';
 
 const App = () => {
   
@@ -46,10 +46,10 @@ const App = () => {
 
   return (
     <Form
-      getFormID="https://getform.io/f/b0b77947-fd71-7bff-9ff3-11cae771157f" // your GetFormID
+      getFormID="https://getform.io/f/your-getform-id"
       showName={true}
       showEmail={true}
-      showMessage={true}
+      showMessage={false}
       onFormSubmit={onFormSubmit}
     />
   );

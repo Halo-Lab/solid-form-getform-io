@@ -1,11 +1,12 @@
 import styles from "./Form.module.css";
 
-const Textarea = ({ id, label, placeholder, value, onInput, onBlur, isError }) => {
+const Textarea = ({ id, name, label, placeholder, value, onInput, onBlur, isError }) => {
   return (
     <div class={isError() ? styles.messageError : styles.message}>
       <label htmlFor={id}>{label}</label>
       <textarea
         id={id}
+        name={name}
         placeholder={placeholder}
         value={value()}
         onInput={onInput}
@@ -13,8 +14,11 @@ const Textarea = ({ id, label, placeholder, value, onInput, onBlur, isError }) =
       />
       {isError() ? (
         <span class={styles.tooltip}>
-          It seems like you filled in this field incorrectly. Please, fill in
-          this field to continue
+          <span class={styles.tooltipIcon}></span>
+          <span class={styles.tooltipText}>
+            It seems like you filled in this field incorrectly. Please, fill in
+            this field to continue
+          </span>
         </span>
       ) : (
         ""

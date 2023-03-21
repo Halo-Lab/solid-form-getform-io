@@ -1,12 +1,13 @@
 import styles from "./Form.module.css";
 
-const Input = ({ id, label, placeholder, value, onInput, onBlur, isError }) => {
+const Input = ({ id, name, label, placeholder, value, onInput, onBlur, isError }) => {
   return (
     <div class={isError() ? styles.inputError : styles.input}>
       <label htmlFor={id}>{label}</label>
       <input
         type="text"
         id={id}
+        name={name}
         placeholder={placeholder}
         value={value()}
         onInput={onInput}
@@ -14,8 +15,11 @@ const Input = ({ id, label, placeholder, value, onInput, onBlur, isError }) => {
       />
       {isError() ? (
         <span class={styles.tooltip}>
-          It seems like you filled in this field incorrectly. Please, fill in
-          this field to continue
+          <span class={styles.tooltipIcon}></span>
+          <span class={styles.tooltipText}>
+            It seems like you filled in this field incorrectly. Please, fill in
+            this field to continue
+          </span>
         </span>
       ) : (
         ""

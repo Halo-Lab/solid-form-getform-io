@@ -20,20 +20,15 @@ const Form = ({
   const [emailError, setEmailError] = createSignal("");
   const [messageError, setMessageError] = createSignal("");
 
-  function handleNameBlur() {
-    const nameError = validateName(name());
-    setNameError(nameError);
-  }
+  const handleBlur = (setError, validate, field) => {
+    const error = validate(field());
+    setError(error);
+  };
 
-  function handleEmailBlur() {
-    const emailError = validateEmail(email());
-    setEmailError(emailError);
-  }
-
-  function handleMessageBlur() {
-    const messageError = validateMessage(message());
-    setMessageError(messageError);
-  }
+  const handleInputChange = (e, setValue, setError) => {
+    setValue(e.target.value);
+    setError("");
+  };
 
   return (
     <form
@@ -67,9 +62,9 @@ const Form = ({
           label="Your Name"
           placeholder="Your Name"
           value={name}
-          onInput={(e) => setName(e.target.value)}
           isError={nameError}
-          onBlur={handleNameBlur}
+          onInput={(e) => handleInputChange(e, setName, setNameError)}
+          onBlur={() => handleBlur(setNameError, validateName, name)}
         />
       )}
       {showEmail && (
@@ -78,9 +73,9 @@ const Form = ({
           label="Email Address"
           placeholder="Email Address"
           value={email}
-          onInput={(e) => setEmail(e.target.value)}
           isError={emailError}
-          onBlur={handleEmailBlur}
+          onInput={(e) => handleInputChange(e, setEmail, setEmailError)}
+          onBlur={() => handleBlur(setEmailError, validateEmail, email)}
         />
       )}
       {showMessage && (
@@ -89,9 +84,9 @@ const Form = ({
           label="Message"
           placeholder="Message"
           value={message}
-          onInput={(e) => setMessage(e.target.value)}
           isError={messageError}
-          onBlur={handleMessageBlur}
+          onInput={(e) => handleInputChange(e, setMessage, setMessageError)}
+          onBlur={() => handleBlur(setMessageError, validateMessage, message)}
         />
       )}
       <Button label="Send form" onClick={() => {}} />
