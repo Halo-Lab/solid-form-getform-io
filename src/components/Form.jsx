@@ -4,6 +4,7 @@ import Textarea from "./Textarea";
 import Button from "./Button";
 import styles from "./Form.module.css";
 import handleSubmit from "../helpers/handleSubmit";
+import formData from "../helpers/formData";
 import {
   validateName,
   validateEmail,
@@ -23,36 +24,23 @@ const Form = ({
   const [nameError, setNameError] = createSignal("");
   const [emailError, setEmailError] = createSignal("");
   const [messageError, setMessageError] = createSignal("");
-
-  const fields = {
-    name: {
-      value: name,
-      error: nameError,
-      fieldName: name,
-      setValue: setName,
-      setError: setNameError,
-      validator: validateName,
-      show: showName,
-    },
-    email: {
-      value: email,
-      error: emailError,
-      fieldName: email,
-      setValue: setEmail,
-      setError: setEmailError,
-      validator: validateEmail,
-      show: showEmail,
-    },
-    message: {
-      value: message,
-      error: messageError,
-      fieldName: message,
-      setValue: setMessage,
-      setError: setMessageError,
-      validator: validateMessage,
-      show: showMessage,
-    },
-  };
+  const fields = formData(
+    name,
+    email,
+    message,
+    setName,
+    setEmail,
+    setMessage,
+    showName,
+    showEmail,
+    showMessage,
+    nameError,
+    emailError,
+    messageError,
+    setNameError,
+    setEmailError,
+    setMessageError
+  );
 
   const handleBlur = (setError, validate, field) => {
     const error = validate(field());
