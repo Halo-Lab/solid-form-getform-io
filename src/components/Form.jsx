@@ -4,14 +4,18 @@ import Textarea from "./Textarea";
 import Button from "./Button";
 import styles from "./Form.module.css";
 import handleSubmit from "../helpers/handleSubmit";
-import { validateName, validateEmail, validateMessage } from "../helpers/validate";
+import {
+  validateName,
+  validateEmail,
+  validateMessage,
+} from "../helpers/validate";
 
 const Form = ({
   getFormID,
   showName = true,
   showEmail = true,
   showMessage = true,
-  onFormSubmit=null,
+  onFormSubmit = null,
 }) => {
   const [name, setName] = createSignal("");
   const [email, setEmail] = createSignal("");
@@ -19,6 +23,36 @@ const Form = ({
   const [nameError, setNameError] = createSignal("");
   const [emailError, setEmailError] = createSignal("");
   const [messageError, setMessageError] = createSignal("");
+
+  const fields = {
+    name: {
+      value: name,
+      error: nameError,
+      fieldName: name,
+      setValue: setName,
+      setError: setNameError,
+      validator: validateName,
+      show: showName,
+    },
+    email: {
+      value: email,
+      error: emailError,
+      fieldName: email,
+      setValue: setEmail,
+      setError: setEmailError,
+      validator: validateEmail,
+      show: showEmail,
+    },
+    message: {
+      value: message,
+      error: messageError,
+      fieldName: message,
+      setValue: setMessage,
+      setError: setMessageError,
+      validator: validateMessage,
+      show: showMessage,
+    },
+  };
 
   const handleBlur = (setError, validate, field) => {
     const error = validate(field());
@@ -34,25 +68,7 @@ const Form = ({
     <form
       action={getFormID}
       method="POST"
-      onSubmit={(event) =>
-        handleSubmit(
-          event,
-          name,
-          email,
-          message,
-          getFormID,
-          setName,
-          setEmail,
-          setMessage,
-          showName,
-          showEmail,
-          showMessage,
-          setNameError,
-          setEmailError,
-          setMessageError,
-          onFormSubmit
-        )
-      }
+      onSubmit={(event) => handleSubmit(event, fields, getFormID, onFormSubmit)}
       class={styles.form}
       noValidate
     >

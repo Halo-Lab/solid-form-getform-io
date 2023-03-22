@@ -1,65 +1,40 @@
-import { validateName, validateEmail, validateMessage } from "./validate";
-
 const handleSubmit = (
   event,
-  name,
-  email,
-  message,
+  fields,
   getFormID,
-  setName,
-  setEmail,
-  setMessage,
-  showName,
-  showEmail,
-  showMessage,
-  setNameError,
-  setEmailError,
-  setMessageError,
   onFormSubmit
 ) => {
   event.preventDefault();
 
-  let nameError, emailError, messageError;
-
-  if (showName) {
-    nameError = validateName(name());
-    setNameError(nameError);
-  }
-
-  if (showEmail) {
-    emailError = validateEmail(email());
-    setEmailError(emailError);
-  }
-
-  if (showMessage) {
-    messageError = validateMessage(message());
-    setMessageError(messageError);
-  }
-
-  if (
-    (!showName || nameError === "") &&
-    (!showEmail || emailError === "") &&
-    (!showMessage || messageError === "")
-  ) {
+  Object.entries(fields).forEach(([fieldName, field]) => {
+    if (field.show) {
+      const error = field.validator(field.fieldName());
+      field.setError(error);
+    }
+  });
+  const hasErrors = Object.values(fields).some((field) => field.error() !== "");
+  
+  if (!hasErrors) {
+    const body = {};
+    Object.entries(fields).forEach(([fieldName, field]) => {
+      if (field.show) {
+        body[fieldName] = field.value();
+      }
+    });
     fetch(getFormID, {
       method: "POST",
-      body: JSON.stringify({
-        ...(showName && { name: name() }),
-        ...(showEmail && { email: email() }),
-        ...(showMessage && { message: message() }),
-      }),
+      body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" },
     })
       .then(() => {
-        setName("");
-        setEmail("");
-        setMessage("");
+        Object.values(fields).forEach((field) => field.setValue(""));
       })
       .catch((error) => console.error("Error submitting form:", error));
-      if(onFormSubmit) {
-        onFormSubmit();
-      }
+
+    if (onFormSubmit) {
+      onFormSubmit();
+    }
   }
-}
+};
 
 export default handleSubmit;
