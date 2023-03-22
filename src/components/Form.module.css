@@ -178,10 +178,6 @@ input:-webkit-autofill {
   -webkit-text-fill-color: #060811;
 }
 
-input:not(:placeholder-shown) {
-  border: 1px solid #060811;
-}
-
 .inputError input:not(:placeholder-shown) {
   border: 1px solid #f27c74;
 }
