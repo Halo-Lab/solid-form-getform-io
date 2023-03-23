@@ -1,22 +1,14 @@
+import { createSignal } from "solid-js";
 import { validateName, validateEmail, validateMessage } from "./validate";
 
-const formData = (
-  name,
-  email,
-  message,
-  setName,
-  setEmail,
-  setMessage,
-  showName,
-  showEmail,
-  showMessage,
-  nameError,
-  emailError,
-  messageError,
-  setNameError,
-  setEmailError,
-  setMessageError
-) => {
+const formData = (showName, showEmail, showMessage) => {
+  const [name, setName] = createSignal("");
+  const [email, setEmail] = createSignal("");
+  const [message, setMessage] = createSignal("");
+  const [nameError, setNameError] = createSignal("");
+  const [emailError, setEmailError] = createSignal("");
+  const [messageError, setMessageError] = createSignal("");
+
   const fields = {
     name: {
       component: "Input",
