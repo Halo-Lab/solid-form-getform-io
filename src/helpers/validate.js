@@ -1,5 +1,5 @@
 export const validateName = (name) => {
-  const nameRegex = /^[a-zA-Z0-9_]{2,40}$/;
+  const nameRegex = /^[а-яА-Яa-zA-Z0-9_]{2,40}$/;
   return nameRegex.test(name) ? "" : "Please enter a real name";
 }
 

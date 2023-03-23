@@ -100,7 +100,7 @@ input {
 }
 
 .tooltipText {
-  position: relative;
+  position: absolute;
   display: block;
   width: 100%;
   max-width: 446px;

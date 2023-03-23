@@ -4,7 +4,7 @@ This is a form component built with Solid.js that allows you to easily create a 
 ## Installation
 You can install the package using npm:
 
-`npm install solid-form-solid-form-getform-io-io`
+`npm install solid-form-getform-io`
 
 ## Usage
 To use the form component, you need to import it into your Solid.js application:
@@ -56,3 +56,14 @@ const App = () => {
 }
 ```
 
+## Word from the author
+
+Have fun ✌️
+
+<a href="https://www.halo-lab.com/?utm_source=github">
+  <img
+    src="https://dgestran.sirv.com/Images/supported-by-halolab.png"
+    alt="Supported by Halo lab"
+    height="60"
+  >
+</a>

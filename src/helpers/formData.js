@@ -19,6 +19,10 @@ const formData = (
 ) => {
   const fields = {
     name: {
+      component: "Input",
+      id: "name",
+      label: "Your Name",
+      placeholder: "Your Name",
       value: name,
       error: nameError,
       fieldName: name,
@@ -28,6 +32,10 @@ const formData = (
       show: showName,
     },
     email: {
+      component: "Input",
+      id: "email",
+      label: "Email Address",
+      placeholder: "Email Address",
       value: email,
       error: emailError,
       fieldName: email,
@@ -37,6 +45,10 @@ const formData = (
       show: showEmail,
     },
     message: {
+      component: "Textarea",
+      id: "message",
+      label: "Message",
+      placeholder: "Message",
       value: message,
       error: messageError,
       fieldName: message,
