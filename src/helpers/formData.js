@@ -2,24 +2,16 @@ import { createSignal } from "solid-js";
 import { validateName, validateEmail, validateMessage } from "./validate";
 
 const formData = (showName, showEmail, showMessage) => {
-  const [name, setName] = createSignal("");
-  const [email, setEmail] = createSignal("");
-  const [message, setMessage] = createSignal("");
-  const [nameError, setNameError] = createSignal("");
-  const [emailError, setEmailError] = createSignal("");
-  const [messageError, setMessageError] = createSignal("");
-
   const fields = {
     name: {
       component: "Input",
       id: "name",
       label: "Your Name",
       placeholder: "Your Name",
-      value: name,
-      error: nameError,
-      fieldName: name,
-      setValue: setName,
-      setError: setNameError,
+      value: "",
+      error: "",
+      setValue: () => {},
+      setError: () => {},
       validator: validateName,
       show: showName,
     },
@@ -28,11 +20,10 @@ const formData = (showName, showEmail, showMessage) => {
       id: "email",
       label: "Email Address",
       placeholder: "Email Address",
-      value: email,
-      error: emailError,
-      fieldName: email,
-      setValue: setEmail,
-      setError: setEmailError,
+      value: "",
+      error: "",
+      setValue: () => {},
+      setError: () => {},
       validator: validateEmail,
       show: showEmail,
     },
@@ -41,15 +32,27 @@ const formData = (showName, showEmail, showMessage) => {
       id: "message",
       label: "Message",
       placeholder: "Message",
-      value: message,
-      error: messageError,
-      fieldName: message,
-      setValue: setMessage,
-      setError: setMessageError,
+      value: "",
+      error: "",
+      setValue: () => {},
+      setError: () => {},
       validator: validateMessage,
       show: showMessage,
     },
   };
+
+  Object.keys(fields).forEach((key) => {
+    const [value, setValue] = createSignal(fields[key].value);
+    const [error, setError] = createSignal(fields[key].error);
+
+    fields[key] = {
+      ...fields[key],
+      value,
+      setValue,
+      error,
+      setError,
+    };
+  });
 
   return fields;
 };

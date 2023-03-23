@@ -8,7 +8,7 @@ const handleSubmit = (
 
   Object.entries(fields).forEach(([fieldName, field]) => {
     if (field.show) {
-      const error = field.validator(field.fieldName());
+      const error = field.validator(field.value());
       field.setError(error);
     }
   });
