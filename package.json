@@ -1,14 +1,18 @@
 {
-  "name": "solid-form-getform-io",
-  "version": "0.0.0",
-  "description": "",
+  "name": "@halo-lab/solid-form-getform-io",
+  "version": "0.0.1",
+  "description": "Solid.js custom form integration with the getform.io service",
+  "license": "ISC",
+  "repository": {
+    "url": "https://github.com/Halo-Lab/solid-form-getform-io",
+    "type": "git"
+  },
   "scripts": {
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview"
   },
-  "license": "MIT",
   "devDependencies": {
     "vite": "^4.1.1",
     "vite-plugin-solid": "^2.5.0"
