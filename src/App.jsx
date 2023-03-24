@@ -8,7 +8,7 @@ const App = () => {
 
   return (
     <Form
-      getFormID="https://getform.io/f/6f5dca58-a42e-4b16-9b3e-c0ad81631900" // yout get-form-id
+      getFormID="" // yout get-form-id
       showName={true}
       showEmail={true}
       showMessage={true}
