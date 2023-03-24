@@ -1,34 +1,69 @@
+# @halo-lab/solid-form-getform-io
+This is a form component built with Solid.js that allows you to easily create a form that submits data to a GetForm endpoint. The form has three fields: name (input type="text"), email (input type="email"), and message (textarea). You can choose which fields to display by passing props to the component.
+
+## Installation
+You can install the package using npm:
+
+`npm install @halo-lab/solid-form-getform-io`
+
 ## Usage
+To use the form component, you need to import it into your Solid.js application:
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+`import Form from '@halo-lab/solid-form-getform-io';`
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+You can then use the component in your application:
 
-```bash
-$ npm install # or pnpm install or yarn install
+```js
+<Form getFormID="your-getform-id" />
 ```
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+You need to provide your GetFormID as the getFormID prop.
 
-## Available Scripts
+By default, all three fields (name, email, and message) will be displayed in the form. If you want to display only specific fields, you can use the showName, showEmail, and showMessage props:
 
-In the project directory, you can run:
+<Form getFormID="your-getform-id" showName={true} showEmail={false} showMessage={true} />
 
-### `npm dev` or `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Props
+The following props are available for the form component:
+- getFormID (required): Your GetFormID.
+- showName (optional, default true): Whether to show the name field.
+- showEmail (optional, default true): Whether to show the email field.
+- showMessage (optional, default true): Whether to show the message field.
+- onFormSubmit(optional, default null): Function that is executed when the form is submitted 
 
-The page will reload if you make edits.<br>
+## Example
+Here's an example of how to use the form component:
 
-### `npm run build`
+```js
+import Form from '@halo-lab/solid-form-getform-io';
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
+const App = () => {
+  
+  function onFormSubmit() {
+    console.log("Form submitted!");
+  }
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+  return (
+    <Form
+      getFormID="https://getform.io/f/your-getform-id"
+      showName={true}
+      showEmail={true}
+      showMessage={false}
+      onFormSubmit={onFormSubmit}
+    />
+  );
+}
+```
 
-## Deployment
+## Word from the author
 
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+Have fun ✌️
+
+<a href="https://www.halo-lab.com/?utm_source=github">
+  <img
+    src="https://dgestran.sirv.com/Images/supported-by-halolab.png"
+    alt="Supported by Halo lab"
+    height="60"
+  >
+</a>

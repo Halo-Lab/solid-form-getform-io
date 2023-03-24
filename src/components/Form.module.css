@@ -1,0 +1,207 @@
+@font-face {
+  font-family: MacPawFixel;
+  src: url("../assets/fonts/MacPawFixelText/MacPawFixelText-Regular.woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: MacPawFixel;
+  src: url("../assets/fonts/MacPawFixelText/MacPawFixelText-Medium.woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: MacPawFixel;
+  src: url("../assets/fonts/MacPawFixelText/MacPawFixelText-SemiBold.woff2");
+  font-weight: 600;
+}
+
+form {  
+  box-sizing: border-box;
+  width: 446px;
+  max-width: calc(100vw - 16px);
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 0;  
+  font-family: MacPawFixel, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #060811;
+} 
+
+form * {
+  box-sizing: border-box;
+}
+
+input,
+textarea {
+  font-family: MacPawFixel;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: #060811;
+  border: 1px solid #999;
+}
+
+::placeholder {
+  font-family: MacPawFixel;
+  font-weight: 400;
+}
+
+button {
+  font-family: MacPawFixel;
+  font-weight: 600;
+}
+
+label {
+  display: block;
+  width: 100%;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+  color: #060811;
+  pointer-events: none;
+}
+
+input {
+  display: block;
+  width: 100%;
+  max-width: 446px;
+  height: 54px;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 14px;
+  color: #060811;
+  background-color: #fff;
+  transition: 0.3s ease-in-out;
+}
+
+.tooltipIcon {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  top: -65px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  background-image: url("../assets/svg/danger.svg");
+  cursor: pointer;
+}
+
+.messageError .tooltipIcon {
+  top: -101px;
+}
+
+.tooltip {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 446px;
+}
+
+.tooltipText {
+  position: absolute;
+  display: block;
+  width: 100%;
+  max-width: 446px;
+  padding: 0 12px;
+  height: 0;
+  border-radius: 14px;
+  background-color: #f27c74;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 16px;
+  overflow-y: hidden;
+  line-height: 150%;
+  transition: .3s ease-in-out;
+}
+
+.tooltipText::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  right: 0;
+  width: 36px;
+  height: 0;
+  background-image: url("../assets/svg/toltip-arrow.svg");
+  transition: .1s ease-in-out;
+}
+
+.tooltipIcon:hover ~ .tooltipText {
+  height: auto;
+  margin-bottom: 24px;
+  padding: 12px;
+  overflow-y: visible;
+}
+
+.tooltipIcon:hover ~ .tooltipText::after {
+  height: 11px;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  max-width: 446px;
+  height: 90px;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 14px;
+  background-color: #fff;
+  resize: none;
+  transition: 0.3s ease-in-out;
+}
+
+::placeholder {
+  font-size: 16px;
+  color: #9b9ca0;
+}
+
+input:hover,
+textarea:hover {
+  border: 1px solid #d5dcda;
+}
+
+.inputError input,
+.messageError textarea {
+  border: 1px solid #f27c74;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid #060811;
+  outline: 0;
+  background-image: none;
+}
+
+input:-webkit-autofill {
+  box-shadow: inset 0 0 0 52px #fff;
+  -webkit-text-fill-color: #060811;
+}
+
+.inputError input:not(:placeholder-shown) {
+  border: 1px solid #f27c74;
+}
+
+.buttonContainer {
+  padding-top: 16px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  max-width: 446px;
+  height: 52px;
+  padding: 14px 32px;
+  border: 0;
+  outline: 0;
+  border-radius: 10px;
+  background-color: #2f55b7;
+  font-size: 16px;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #23418e;
+}
