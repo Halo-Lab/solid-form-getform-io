@@ -1,11 +1,14 @@
 {
-  "name": "@halo-lab/solid-form-getform-io",
+  "name": "solid-form-getform-io",
   "version": "0.0.1",
   "description": "Solid.js custom form integration with the getform.io service",
   "license": "ISC",
   "repository": {
     "url": "https://github.com/Halo-Lab/solid-form-getform-io",
     "type": "git"
+  },
+  "exports": {
+    ".": "./src/components/Form.jsx"
   },
   "scripts": {
     "start": "vite",
