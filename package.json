@@ -10,6 +10,11 @@
   "exports": {
     ".": "./src/components/Form.jsx"
   },
+  "keywords": [
+    "solid-js",
+    "getform.io",
+    "form"
+  ],
   "scripts": {
     "start": "vite",
     "dev": "vite",
