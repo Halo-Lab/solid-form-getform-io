@@ -14,7 +14,7 @@ To use the form component, you need to import it into your Solid.js application:
 You can then use the component in your application:
 
 ```js
-<Form getFormID="your-getform-id" />
+<Form getFormID="https://getform.io/f/your-getform-id" />
 ```
 
 You need to provide your GetFormID as the getFormID prop.

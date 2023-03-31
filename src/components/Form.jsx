@@ -1,5 +1,9 @@
 import Input from "./Input";
+import Checkbox from "./Checkbox";
 import Textarea from "./Textarea";
+import RadioGroup from "./RadioGroup";
+import Select from "./Select";
+import FileInput from "./FileInput";
 import Button from "./Button";
 import styles from "./Form.module.css";
 import handleSubmit from "../helpers/handleSubmit";
@@ -32,6 +36,22 @@ const Form = ({
       class={styles.form}
       noValidate
     >
+      <Checkbox id="checkbox" label="Checkbox label" checked onInput />
+      <RadioGroup
+        id="radio"
+        label="Radio label"
+        options={[{ value: "girl", label: "girl" }]}
+        value
+        onInput
+      />
+      <Select
+        id="select"
+        label="Dropdown"
+        options={[{ value: "girl", label: "girl" }]}
+        value
+        onInput
+      />
+      <FileInput id="radio" label="Upload Files" onInput />
       {Object.values(fields).map(
         ({
           component,
